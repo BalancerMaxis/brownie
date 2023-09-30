@@ -211,7 +211,7 @@ live:
     networks:
       - chainid: 8453
         explorer: https://api.basescan.org/api
-        host: https://mainnet.base.org
+        host: https://developer-access-mainnet.base.org
         id: base-main
         name: Base mainnet
 
