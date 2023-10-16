@@ -197,7 +197,7 @@ live:
     networks:
       - chainid: 100
         explorer: https://api.gnosisscan.io/api
-        host: https://rpc.gnosischain.com/
+        host: https://rpc.ankr.com/gnosis
         id: gnosis-main
         name: Mainnet
   - name: Polygon zkEVM
