@@ -78,7 +78,7 @@ _unverified_addresses: Set = set()
 _explorer_tokens = {
     "optimistic": "OPTIMISMSCAN_TOKEN",
     "lineascan": "LINEASCAN_TOKEN",
-    "modescan": "MODESCAN_TOKEN",
+    "34443": "MODESCAN_TOKEN",
     "frax": "FRAXSCAN_TOKEN",
     "etherscan": "ETHERSCAN_TOKEN",
     "bscscan": "BSCSCAN_TOKEN",

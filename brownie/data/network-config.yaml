@@ -234,8 +234,8 @@ live:
   - name: Mode
     networks:
       - chainid: 34443
-        explorer: https://api.modescan.io/api
-        host: https://blastapi.io/chains/mode
+        explorer: https://api.routescan.io/v2/network/mainnet/evm/34443/etherscan/api
+        host: https://mainnet.mode.network/
         id: mode-main
         name: Mode mainnet
   - name: Fraxtal
