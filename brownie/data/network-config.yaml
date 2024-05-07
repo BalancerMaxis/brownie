@@ -221,10 +221,30 @@ live:
     networks:
       - chainid: 8453
         explorer: https://api.basescan.org/api
-        host: https://mainnet.base.org
+        host: https://developer-access-mainnet.base.org
         id: base-main
         name: Base mainnet
-
+  - name: Linea
+    networks:
+      - chainid: 59144
+        explorer: https://api.lineascan.build/api
+        host:  https://linea-mainnet.infura.io/v3/$WEB3_INFURA_PROJECT_ID
+        id: linea-main
+        name: Linea mainnet
+  - name: Mode
+    networks:
+      - chainid: 34443
+        explorer: https://api.modescan.io/api
+        host: https://blastapi.io/chains/mode
+        id: mode-main
+        name: Mode mainnet
+  - name: Fraxtal
+    networks:
+      - chainid: 252
+        explorer: https://api.fraxscan.com/api
+        host: https://rpc.frax.com
+        id: fraxtal-main
+        name: Fraxtal mainnet
 
 
 development:
