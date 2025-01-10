@@ -245,7 +245,13 @@ live:
         host: https://rpc.frax.com
         id: fraxtal-main
         name: Fraxtal mainnet
-
+  - name: Sonic
+    networks:
+      - chainid: 146
+        explorer: https://api.sonicscan.org/api
+        host: https://rpc.soniclabs.com
+        id: sonic-main
+        name: Sonic mainnet
 
 development:
   - name: Anvil

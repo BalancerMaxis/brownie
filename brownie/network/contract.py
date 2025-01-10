@@ -80,6 +80,7 @@ _explorer_tokens = {
     "lineascan": "LINEASCAN_TOKEN",
     "34443": "MODESCAN_TOKEN",
     "frax": "FRAXSCAN_TOKEN",
+    "sonicscan": "SONICSCAN_TOKEN",
     "etherscan": "ETHERSCAN_TOKEN",
     "bscscan": "BSCSCAN_TOKEN",
     "zkevm": "ZKEVMSCAN_TOKEN",
