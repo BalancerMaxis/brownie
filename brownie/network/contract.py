@@ -88,6 +88,7 @@ _explorer_tokens = {
     "ftmscan": "FTMSCAN_TOKEN",
     "arbiscan": "ARBISCAN_TOKEN",
     "snowtrace": "SNOWTRACE_TOKEN",
+    "snowscan": "SNOWSCAN_TOKEN",
     "aurorascan": "AURORASCAN_TOKEN",
     "moonscan": "MOONSCAN_TOKEN",
     "gnosisscan": "GNOSISSCAN_TOKEN",
