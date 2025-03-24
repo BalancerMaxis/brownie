@@ -713,7 +713,9 @@ class _DeployedContractBase(_ContractBase):
         self, address: str, owner: Optional[AccountsType] = None, tx: TransactionReceiptType = None
     ) -> None:
         address = _resolve_address(address)
-        self.bytecode = web3.eth.get_code(address).hex()[2:]
+        self.bytecode = (
+            self._build.get("deployedBytecode", None) or web3.eth.get_code(address).hex()[2:]
+        )
         if not self.bytecode:
             raise ContractNotFound(f"No contract deployed at {address}")
         self._owner = owner
@@ -953,7 +955,13 @@ class Contract(_DeployedContractBase):
             will be performed using this account.
         """
         address = _resolve_address(address)
-        build = {"abi": abi, "address": address, "contractName": name, "type": "contract"}
+        build = {
+            "abi": abi,
+            "address": address,
+            "contractName": name,
+            "type": "contract",
+            "deployedBytecode": web3.eth.get_code(address).hex()[2:],
+        }
 
         self = cls.__new__(cls)
         _ContractBase.__init__(self, None, build, {})  # type: ignore
@@ -1263,7 +1271,7 @@ class ContractEvents(_ContractEvents):
     ) -> None:
         """
         Subscribe to event with a name matching 'event_name', calling the 'callback'
-        function on new occurence giving as parameter the event log receipt.
+        function on new occurrence giving as parameter the event log receipt.
 
         Args:
             event_name (str): Name of the event to subscribe to.
@@ -1290,10 +1298,10 @@ class ContractEvents(_ContractEvents):
 
         Returns:
             if 'event_type' is specified:
-                [list]: List of events of type 'event_type' that occured between
+                [list]: List of events of type 'event_type' that occurred between
                 'from_block' and 'to_block'.
             else:
-                event_logbook [dict]: Dictionnary of events of the contract that occured
+                event_logbook [dict]: Dictionary of events of the contract that occurred
                 between 'from_block' and 'to_block'.
         """
         if to_block is None or to_block > web3.eth.block_number:
@@ -1320,7 +1328,7 @@ class ContractEvents(_ContractEvents):
         'event_name' occurs. If timeout is superior to zero and no event matching
         'event_name' has occured, the Coroutine ends when the timeout is reached.
 
-        The Coroutine return value is an AttributeDict filled with the following fileds :
+        The Coroutine return value is an AttributeDict filled with the following fields :
             - 'event_data' (AttributeDict): The event log receipt that was caught.
             - 'timed_out' (bool): False if the event did not timeout, else True
 
