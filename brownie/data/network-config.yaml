@@ -252,6 +252,13 @@ live:
         host: https://rpc.soniclabs.com
         id: sonic-main
         name: Sonic mainnet
+  - name: HyperEVM
+    networks:
+      - chainid: 999
+        explorer: https://api.hyperevmscan.io/api
+        host: https://rpc.hyperliquid.xyz/evm
+        id: hyperevm-main
+        name: HyperEVM mainnet
 
 development:
   - name: Anvil

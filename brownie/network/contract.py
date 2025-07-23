@@ -93,6 +93,7 @@ _explorer_tokens = {
     "moonscan": "MOONSCAN_TOKEN",
     "gnosisscan": "GNOSISSCAN_TOKEN",
     "base": "BASESCAN_TOKEN",
+    "hyperevmscan": "HYPEREVMSCAN_TOKEN",
     "blast": "BLASTSCAN_TOKEN",
 }
 
