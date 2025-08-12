@@ -1,201 +1,88 @@
 live:
   - name: Ethereum
     networks:
-      - name: Mainnet (Infura)
+      - name: Mainnet (DRPC)
         chainid: 1
         id: mainnet
-        host: https://mainnet.infura.io/v3/$WEB3_INFURA_PROJECT_ID
+        host: https://lb.drpc.org/ethereum/$DRPC_KEY
         explorer: https://api.etherscan.io/api
         multicall2: "0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696"
-        provider: infura
-      - name: Ropsten (Infura)
-        chainid: 3
-        id: ropsten
-        host: https://ropsten.infura.io/v3/$WEB3_INFURA_PROJECT_ID
-        explorer: https://api-ropsten.etherscan.io/api
-        multicall2: "0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696"
-        provider: infura
-      - name: Rinkeby (Infura)
-        chainid: 4
-        id: rinkeby
-        host: https://rinkeby.infura.io/v3/$WEB3_INFURA_PROJECT_ID
-        explorer: https://api-rinkeby.etherscan.io/api
-        multicall2: "0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696"
-        provider: infura
-      - name: Sepolia (Infura)
+        provider: drpc
+      - name: Sepolia (DRPC)
         chainid: 11155111
         id: sepolia
-        host: https://sepolia.infura.io/v3/$WEB3_INFURA_PROJECT_ID
+        host: https://lb.drpc.org/sepolia/$DRPC_KEY
         explorer: https://api-sepolia.etherscan.io/
-        provider: infura
-      - name: Goerli (Infura)
-        chainid: 5
-        id: goerli
-        host: https://goerli.infura.io/v3/$WEB3_INFURA_PROJECT_ID
-        explorer: https://api-goerli.etherscan.io/api
-        multicall2: "0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696"
-        provider: infura
-      - name: Kovan (Infura)
-        chainid: 42
-        id: kovan
-        host: https://kovan.infura.io/v3/$WEB3_INFURA_PROJECT_ID
-        explorer: https://api-kovan.etherscan.io/api
-        multicall2: "0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696"
-        provider: infura
-  - name: Ethereum Classic
-    networks:
-      - name: Mainnet
-        chainid: 61
-        id: etc
-        host: https://www.ethercluster.com/etc
-        explorer: https://blockscout.com/etc/mainnet/api
-      - name: Kotti
-        chainid: 6
-        id: kotti
-        host: https://www.ethercluster.com/kotti
-        explorer: https://blockscout.com/etc/kotti/api
+        provider: drpc
   - name: Arbitrum
     networks:
       - name: Mainnet
         chainid: 42161
         id: arbitrum-main
-        host: https://arb1.arbitrum.io/rpc
+        host: https://lb.drpc.org/arbitrum/$DRPC_KEY
         explorer: https://api.arbiscan.io/api
         multicall2: "0x5B5CFE992AdAC0C9D48E05854B2d91C73a003858"
   - name: Avalanche
     networks:
       - chainid: 43114
         explorer: https://api.snowscan.xyz/api
-        host: https://api.avax.network/ext/bc/C/rpc
+        host: https://lb.drpc.org/avalanche/$DRPC_KEY
         id: avax-main
         name: Mainnet
       - chainid: 43113
-        host: https://api.avax-test.network/ext/bc/C/rpc
+        host: https://lb.drpc.org/avalanche-fuji/$DRPC_KEY
         id: avax-test
         name: Testnet
-  - name: Aurora
-    networks:
-      - name: Mainnet
-        chainid: 1313161554
-        id: aurora-main
-        host: https://mainnet.aurora.dev
-        explorer: https://api.aurorascan.dev/api
-        multicall2: "0xace58a26b8Db90498eF0330fDC9C2655db0C45E2"
-      - name: Testnet
-        chainid: 1313161555
-        id: aurora-test
-        host: https://testnet.aurora.dev
-        explorer: https://testnet.aurorascan.dev/api
   - name: Binance Smart Chain
     networks:
       - name: Testnet
         chainid: 97
         id: bsc-test
-        host: https://data-seed-prebsc-1-s1.binance.org:8545
+        host: https://lb.drpc.org/bsc-testnet/$DRPC_KEY
         explorer: https://api-testnet.bscscan.com/api
       - name: Mainnet
         chainid: 56
         id: bsc-main
-        host: https://bsc-dataseed.binance.org
+        host: https://lb.drpc.org/bsc/$DRPC_KEY
         explorer: https://api.bscscan.com/api
-  - name: Boba
-    networks:
-      - name: Testnet
-        chainid: 28
-        id: boba-test
-        host: https://rinkeby.boba.network
-        explorer: https://blockexplorer.rinkeby.boba.network/api
-        multicall2: "0xeD188A73c442Df375b19b7b8f394a15a2b851BB5"
-      - name: Mainnet
-        chainid: 288
-        id: boba-main
-        host: https://mainnet.boba.network
-        explorer: https://blockexplorer.boba.network/api
-        multicall2: "0xbe2Be647F8aC42808E67431B4E1D6c19796bF586"
   - name: Fantom Opera
     networks:
       - name: Testnet
         chainid: 0xfa2
         id: ftm-test
-        host: https://rpc.testnet.fantom.network
+        host: https://lb.drpc.org/fantom-testnet/$DRPC_KEY
         explorer: https://explorer.testnet.fantom.network
       - name: Mainnet
         chainid: 250
         id: ftm-main
-        host: https://rpc.ftm.tools
+        host: https://lb.drpc.org/fantom/$DRPC_KEY
         explorer: https://api.ftmscan.com/api
-  - name: Harmony
-    networks:
-      - name: Mainnet (Shard 0)
-        chainid: 1666600000
-        host: https://api.harmony.one
-        id: harmony-main
-        multicall2: "0x3E01dD8a5E1fb3481F0F589056b428Fc308AF0Fb"
-  - name: Hedera
-    networks:
-      - name: Mainnet
-        chainid: 295
-        id: hedera-main
-        host: https://mainnet.hashio.io/api
-        explorer: https://hashscan.io/mainnet
-      - name: Testnet
-        chainid: 296
-        id: hedera-test
-        host: https://testnet.hashio.io/api
-        explorer: https://hashscan.io/testnet
-      - name: Previewnet
-        chainid: 297
-        id: hedera-preview
-        host: https://previewnet.hashio.io/api
-        explorer: https://hashscan.io/previewnet
-  - name: Moonbeam
-    networks:
-      - name: Mainnet
-        chainid: 1284
-        id: moonbeam-main
-        host: https://rpc.api.moonbeam.network
-        explorer: https://api-moonbeam.moonscan.io/api
-        multicall2: "0x1337BedC9D22ecbe766dF105c9623922A27963EC"
-      - name: Moonbase Alpha
-        chainid: 1287
-        id: moonbeam-test
-        host: https://rpc.api.moonbase.moonbeam.network
-        explorer: https://api-moonbase.moonscan.io/api
-        multicall2: "0x37084d0158C68128d6Bc3E5db537Be996f7B6979"
-  - name: Moonriver
-    networks:
-      - name: Mainnet
-        chainid: 1285
-        id: moonriver-main
-        host: https://rpc.api.moonriver.moonbeam.network
-        explorer: https://api-moonriver.moonscan.io/api
-        multicall2: "0xaef00a0cf402d9dedd54092d9ca179be6f9e5ce3"
   - name: Optimistic Ethereum
     networks:
       - name: Mainnet
         chainid: 10
         id: optimism-main
-        host:  https://optimism-mainnet.infura.io/v3/$WEB3_INFURA_PROJECT_ID
+        host: https://lb.drpc.org/optimism/$DRPC_KEY
         explorer: https://api-optimistic.etherscan.io/api
         multicall2: "0x2DC0E2aa608532Da689e89e237dF582B783E552C"
-      - name: Goerli
-        chainid: 420
+      - name: Sepolia
+        chainid: 11155420
         id: optimism-test
-        host: https://goerli.optimism.io
-        explorer: https://api-goerli-optimism.etherscan.io/api
+        host: https://lb.drpc.org/optimism-sepolia/$DRPC_KEY
+        explorer: https://api-sepolia-optimistic.etherscan.io/api
         multicall2: "0x2DC0E2aa608532Da689e89e237dF582B783E552C"
   - name: Polygon
     networks:
-      - name: Mainnet (Infura)
+      - name: Mainnet (DRPC)
         chainid: 137
         id: polygon-main
-        host: https://polygon-mainnet.infura.io/v3/$WEB3_INFURA_PROJECT_ID
+        host: https://lb.drpc.org/polygon/$DRPC_KEY
         explorer: https://api.polygonscan.com/api
         multicall2: "0xc8E51042792d7405184DfCa245F2d27B94D013b6"
-      - name: Mumbai Testnet (Infura)
-        chainid: 80001
+      - name: Amoy Testnet (DRPC)
+        chainid: 80002
         id: polygon-test
-        host: https://polygon-mumbai.infura.io/v3/$WEB3_INFURA_PROJECT_ID
+        host: https://lb.drpc.org/polygon-amoy/$DRPC_KEY
         explorer: https://api-testnet.polygonscan.com/api
         multicall2: "0x6842E0412AC1c00464dc48961330156a07268d14"
   - name: Gnosis Chain
@@ -203,60 +90,60 @@ live:
       - name: Mainnet
         chainid: 100
         id: gnosis-main
-        host: https://rpc.gnosischain.com
+        host: https://lb.drpc.org/gnosis/$DRPC_KEY
         explorer: https://api.gnosisscan.io/api
       - name: Chiado
         chainid: 10200
         id: gnosis-test
-        host: https://rpc.chiadochain.net
+        host: https://lb.drpc.org/gnosis-chiado/$DRPC_KEY
         explorer: https://gnosis-chiado.blockscout.com/api
   - name: Polygon zkEVM
     networks:
       - chainid: 1101
         explorer: https://api-zkevm.polygonscan.com/api
-        host: https://zkevm-rpc.com
+        host: https://lb.drpc.org/polygon-zkevm/$DRPC_KEY
         id: zkevm-main
         name: Polygon zkEVM mainnet
   - name: Base
     networks:
       - chainid: 8453
         explorer: https://api.basescan.org/api
-        host: https://developer-access-mainnet.base.org
+        host: https://lb.drpc.org/base/$DRPC_KEY
         id: base-main
         name: Base mainnet
   - name: Linea
     networks:
       - chainid: 59144
         explorer: https://api.lineascan.build/api
-        host:  https://linea-mainnet.infura.io/v3/$WEB3_INFURA_PROJECT_ID
+        host: https://lb.drpc.org/linea/$DRPC_KEY
         id: linea-main
         name: Linea mainnet
   - name: Mode
     networks:
       - chainid: 34443
         explorer: https://api.routescan.io/v2/network/mainnet/evm/34443/etherscan/api
-        host: https://mainnet.mode.network/
+        host: https://lb.drpc.org/mode/$DRPC_KEY
         id: mode-main
         name: Mode mainnet
   - name: Fraxtal
     networks:
       - chainid: 252
         explorer: https://api.fraxscan.com/api
-        host: https://rpc.frax.com
+        host: https://lb.drpc.org/fraxtal/$DRPC_KEY
         id: fraxtal-main
         name: Fraxtal mainnet
   - name: Sonic
     networks:
       - chainid: 146
         explorer: https://api.sonicscan.org/api
-        host: https://rpc.soniclabs.com
+        host: https://lb.drpc.org/sonic/$DRPC_KEY
         id: sonic-main
         name: Sonic mainnet
   - name: HyperEVM
     networks:
       - chainid: 999
         explorer: https://api.hyperevmscan.io/api
-        host: https://rpc.hyperliquid.xyz/evm
+        host: https://lb.drpc.org/hyperliquid/$DRPC_KEY
         id: hyperevm-main
         name: HyperEVM mainnet
 
