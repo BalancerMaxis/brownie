@@ -79,6 +79,7 @@ _explorer_tokens = {
     "optimistic": "OPTIMISMSCAN_TOKEN",
     "lineascan": "LINEASCAN_TOKEN",
     "34443": "MODESCAN_TOKEN",
+    "9745": "PLASMASCAN_TOKEN",
     "frax": "FRAXSCAN_TOKEN",
     "sonicscan": "SONICSCAN_TOKEN",
     "etherscan": "ETHERSCAN_TOKEN",

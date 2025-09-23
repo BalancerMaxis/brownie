@@ -146,6 +146,13 @@ live:
         host: https://lb.drpc.org/hyperliquid/$DRPC_KEY
         id: hyperevm-main
         name: HyperEVM mainnet
+  - name: Plasma
+    networks:
+      - chainid: 9745
+        explorer: https://api.routescan.io/v2/network/mainnet/evm/9745/etherscan/api
+        host: https://lb.drpc.org/plasma/$DRPC_KEY
+        id: plasma-main
+        name: Plasma mainnet
 
 development:
   - name: Anvil
