@@ -98,6 +98,27 @@ _explorer_tokens = {
     "blast": "BLASTSCAN_TOKEN",
 }
 
+# Mapping of chainids to legacy token names for backward compatibility
+_chainid_to_legacy_token = {
+    1: "ETHERSCAN_TOKEN",
+    11155111: "ETHERSCAN_TOKEN",  # Sepolia
+    42161: "ARBISCAN_TOKEN",
+    10: "OPTIMISMSCAN_TOKEN",
+    11155420: "OPTIMISMSCAN_TOKEN",  # Optimism Sepolia
+    137: "POLYGONSCAN_TOKEN",
+    80002: "POLYGONSCAN_TOKEN",  # Polygon Amoy
+    1101: "POLYGONSCAN_TOKEN",  # Polygon zkEVM
+    56: "BSCSCAN_TOKEN",
+    97: "BSCSCAN_TOKEN",  # BSC Testnet
+    8453: "BASESCAN_TOKEN",
+    43114: "SNOWSCAN_TOKEN",  # Avalanche
+    43113: "SNOWSCAN_TOKEN",  # Avalanche Fuji
+    59144: "LINEASCAN_TOKEN",  # Linea
+    252: "FRAXSCAN_TOKEN",  # Fraxtal
+    146: "SONICSCAN_TOKEN",  # Sonic
+    999: "HYPEREVMSCAN_TOKEN",  # HyperEVM
+}
+
 
 class _ContractBase:
     _dir_color = "bright magenta"
@@ -348,22 +369,48 @@ class ContractContainer(_ContractBase):
         url = CONFIG.active_network.get("explorer")
         if url is None:
             raise ValueError("Explorer API not set for this network")
-        env_token = next((v for k, v in _explorer_tokens.items() if k in url), None)
-        if env_token is None:
-            raise ValueError(
-                f"Publishing source is only supported on {', '.join(_explorer_tokens)},"
-                "change the Explorer API"
-            )
 
-        if os.getenv(env_token):
-            api_key = os.getenv(env_token)
+        # Determine which API key to use
+        is_etherscan_v2 = "/v2/api" in url
+        api_key = None
+        env_token = None
+
+        if is_etherscan_v2:
+            # Try unified ETHERSCAN_TOKEN first
+            api_key = os.getenv("ETHERSCAN_TOKEN")
+            env_token = "ETHERSCAN_TOKEN"
+
+            # Fall back to chain-specific token for backward compatibility
+            if not api_key:
+                chainid = CONFIG.active_network.get("chainid")
+                legacy_token_name = _chainid_to_legacy_token.get(chainid)
+                if legacy_token_name:
+                    api_key = os.getenv(legacy_token_name)
+                    env_token = legacy_token_name
+
+            if not api_key:
+                raise ValueError(
+                    f"An API token is required to verify contract source code. Visit https://etherscan.io/myapikey "
+                    f"to obtain a token, and then store it as the environment variable $ETHERSCAN_TOKEN"
+                )
         else:
-            host = urlparse(url).netloc
-            host = host[host.index(".") + 1 :]
-            raise ValueError(
-                f"An API token is required to verify contract source code. Visit https://{host}/ "
-                f"to obtain a token, and then store it as the environment variable ${env_token}"
-            )
+            # For non-v2 explorers, use the original URL-based detection
+            env_token = next((v for k, v in _explorer_tokens.items() if k in url), None)
+            if env_token is None:
+                raise ValueError(
+                    f"Publishing source is only supported on {', '.join(_explorer_tokens)},"
+                    "change the Explorer API"
+                )
+
+            if os.getenv(env_token):
+                api_key = os.getenv(env_token)
+            else:
+                host = urlparse(url).netloc
+                host = host[host.index(".") + 1 :]
+                raise ValueError(
+                    f"An API token is required to verify contract source code. Visit https://{host}/ "
+                    f"to obtain a token, and then store it as the environment variable ${env_token}"
+                )
 
         address = _resolve_address(contract.address)
 
@@ -410,6 +457,11 @@ class ContractContainer(_ContractBase):
             "sort": "asc",
             "offset": 1,
         }
+        # Add chainid for Etherscan v2 API
+        if "/v2/api" in url:
+            chainid = CONFIG.active_network.get("chainid")
+            if chainid:
+                params_tx["chainid"] = chainid
         i = 0
         while True:
             response = requests.get(url, params=params_tx, headers=REQUEST_HEADERS)
@@ -452,6 +504,11 @@ class ContractContainer(_ContractBase):
             "constructorArguements": constructor_arguments,
             "licenseType": license_code,
         }
+        # Add chainid for Etherscan v2 API
+        if "/v2/api" in url:
+            chainid = CONFIG.active_network.get("chainid")
+            if chainid:
+                payload_verification["chainid"] = chainid
         response = requests.post(url, data=payload_verification, headers=REQUEST_HEADERS)
         if response.status_code != 200:
             raise ConnectionError(
@@ -472,6 +529,11 @@ class ContractContainer(_ContractBase):
             "action": "checkverifystatus",
             "guid": guid,
         }
+        # Add chainid for Etherscan v2 API
+        if "/v2/api" in url:
+            chainid = CONFIG.active_network.get("chainid")
+            if chainid:
+                params_status["chainid"] = chainid
         while True:
             response = requests.get(url, params=params_status, headers=REQUEST_HEADERS)
             if response.status_code != 200:
@@ -2005,16 +2067,48 @@ def _fetch_from_explorer(address: str, action: str, silent: bool) -> Dict:
         address = _resolve_address(code[120:160])
 
     params: Dict = {"module": "contract", "action": action, "address": address}
-    explorer, env_key = next(
-        ((k, v) for k, v in _explorer_tokens.items() if k in url), (None, None)
-    )
+
+    # Check if this is an Etherscan v2 API endpoint
+    is_etherscan_v2 = "/v2/api" in url
+    if is_etherscan_v2:
+        # Add chainid parameter for Etherscan v2 API
+        chainid = CONFIG.active_network.get("chainid")
+        if chainid:
+            params["chainid"] = chainid
+
+    # Determine which API key to use
+    # For Etherscan v2, prioritize ETHERSCAN_TOKEN, then fall back to chain-specific tokens
+    env_key = None
+    api_key = None
+
+    if is_etherscan_v2:
+        # Try unified ETHERSCAN_TOKEN first
+        api_key = os.getenv("ETHERSCAN_TOKEN")
+        env_key = "ETHERSCAN_TOKEN"
+
+        # Fall back to chain-specific token for backward compatibility
+        if not api_key:
+            chainid = CONFIG.active_network.get("chainid")
+            legacy_token_name = _chainid_to_legacy_token.get(chainid)
+            if legacy_token_name:
+                api_key = os.getenv(legacy_token_name)
+                env_key = legacy_token_name
+    else:
+        # For non-v2 explorers, use the original URL-based detection
+        explorer, env_key = next(
+            ((k, v) for k, v in _explorer_tokens.items() if k in url), (None, None)
+        )
+        if env_key:
+            api_key = os.getenv(env_key)
+
     if env_key is not None:
-        if os.getenv(env_key):
-            params["apiKey"] = os.getenv(env_key)
+        if api_key:
+            params["apiKey"] = api_key
         elif not silent:
+            explorer_name = "Etherscan" if is_etherscan_v2 else urlparse(url).netloc
             warnings.warn(
-                f"No {explorer} API token set. You may experience issues with rate limiting. "
-                f"Visit https://{explorer}.io/register to obtain a token, and then store it "
+                f"No API token set. You may experience issues with rate limiting. "
+                f"Visit https://{explorer_name}/myapikey to obtain a token, and then store it "
                 f"as the environment variable ${env_key}",
                 BrownieEnvironmentWarning,
             )
