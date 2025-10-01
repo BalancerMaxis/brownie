@@ -5,14 +5,14 @@ live:
         chainid: 1
         id: mainnet
         host: https://lb.drpc.org/ethereum/$DRPC_KEY
-        explorer: https://api.etherscan.io/api
+        explorer: https://api.etherscan.io/v2/api
         multicall2: "0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696"
         provider: drpc
       - name: Sepolia (DRPC)
         chainid: 11155111
         id: sepolia
         host: https://lb.drpc.org/sepolia/$DRPC_KEY
-        explorer: https://api-sepolia.etherscan.io/
+        explorer: https://api-sepolia.etherscan.io/v2/api
         provider: drpc
   - name: Arbitrum
     networks:
@@ -20,16 +20,17 @@ live:
         chainid: 42161
         id: arbitrum-main
         host: https://lb.drpc.org/arbitrum/$DRPC_KEY
-        explorer: https://api.arbiscan.io/api
+        explorer: https://api.etherscan.io/v2/api
         multicall2: "0x5B5CFE992AdAC0C9D48E05854B2d91C73a003858"
   - name: Avalanche
     networks:
       - chainid: 43114
-        explorer: https://api.snowscan.xyz/api
+        explorer: https://api.etherscan.io/v2/api
         host: https://lb.drpc.org/avalanche/$DRPC_KEY
         id: avax-main
         name: Mainnet
       - chainid: 43113
+        explorer: https://api.etherscan.io/v2/api
         host: https://lb.drpc.org/avalanche-fuji/$DRPC_KEY
         id: avax-test
         name: Testnet
@@ -39,12 +40,12 @@ live:
         chainid: 97
         id: bsc-test
         host: https://lb.drpc.org/bsc-testnet/$DRPC_KEY
-        explorer: https://api-testnet.bscscan.com/api
+        explorer: https://api.etherscan.io/v2/api
       - name: Mainnet
         chainid: 56
         id: bsc-main
         host: https://lb.drpc.org/bsc/$DRPC_KEY
-        explorer: https://api.bscscan.com/api
+        explorer: https://api.etherscan.io/v2/api
   - name: Fantom Opera
     networks:
       - name: Testnet
@@ -63,13 +64,13 @@ live:
         chainid: 10
         id: optimism-main
         host: https://lb.drpc.org/optimism/$DRPC_KEY
-        explorer: https://api-optimistic.etherscan.io/api
+        explorer: https://api.etherscan.io/v2/api
         multicall2: "0x2DC0E2aa608532Da689e89e237dF582B783E552C"
       - name: Sepolia
         chainid: 11155420
         id: optimism-test
         host: https://lb.drpc.org/optimism-sepolia/$DRPC_KEY
-        explorer: https://api-sepolia-optimistic.etherscan.io/api
+        explorer: https://api.etherscan.io/v2/api
         multicall2: "0x2DC0E2aa608532Da689e89e237dF582B783E552C"
   - name: Polygon
     networks:
@@ -77,13 +78,13 @@ live:
         chainid: 137
         id: polygon-main
         host: https://lb.drpc.org/polygon/$DRPC_KEY
-        explorer: https://api.polygonscan.com/api
+        explorer: https://api.etherscan.io/v2/api
         multicall2: "0xc8E51042792d7405184DfCa245F2d27B94D013b6"
       - name: Amoy Testnet (DRPC)
         chainid: 80002
         id: polygon-test
         host: https://lb.drpc.org/polygon-amoy/$DRPC_KEY
-        explorer: https://api-testnet.polygonscan.com/api
+        explorer: https://api.etherscan.io/v2/api
         multicall2: "0x6842E0412AC1c00464dc48961330156a07268d14"
   - name: Gnosis Chain
     networks:
@@ -100,21 +101,21 @@ live:
   - name: Polygon zkEVM
     networks:
       - chainid: 1101
-        explorer: https://api-zkevm.polygonscan.com/api
+        explorer: https://api.etherscan.io/v2/api
         host: https://lb.drpc.org/polygon-zkevm/$DRPC_KEY
         id: zkevm-main
         name: Polygon zkEVM mainnet
   - name: Base
     networks:
       - chainid: 8453
-        explorer: https://api.basescan.org/api
+        explorer: https://api.etherscan.io/v2/api
         host: https://lb.drpc.org/base/$DRPC_KEY
         id: base-main
         name: Base mainnet
   - name: Linea
     networks:
       - chainid: 59144
-        explorer: https://api.lineascan.build/api
+        explorer: https://api.etherscan.io/v2/api
         host: https://lb.drpc.org/linea/$DRPC_KEY
         id: linea-main
         name: Linea mainnet
@@ -128,21 +129,21 @@ live:
   - name: Fraxtal
     networks:
       - chainid: 252
-        explorer: https://api.fraxscan.com/api
+        explorer: https://api.etherscan.io/v2/api
         host: https://lb.drpc.org/fraxtal/$DRPC_KEY
         id: fraxtal-main
         name: Fraxtal mainnet
   - name: Sonic
     networks:
       - chainid: 146
-        explorer: https://api.sonicscan.org/api
+        explorer: https://api.etherscan.io/v2/api
         host: https://lb.drpc.org/sonic/$DRPC_KEY
         id: sonic-main
         name: Sonic mainnet
   - name: HyperEVM
     networks:
       - chainid: 999
-        explorer: https://api.hyperevmscan.io/api
+        explorer: https://api.etherscan.io/v2/api
         host: https://lb.drpc.org/hyperliquid/$DRPC_KEY
         id: hyperevm-main
         name: HyperEVM mainnet
