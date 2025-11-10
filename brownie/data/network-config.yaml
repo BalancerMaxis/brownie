@@ -55,7 +55,7 @@ live:
         explorer: https://explorer.testnet.fantom.network
       - name: Mainnet
         chainid: 250
-        id: ftm-main
+        id: fantom-main
         host: https://lb.drpc.org/fantom/$DRPC_KEY
         explorer: https://api.ftmscan.com/api
   - name: Optimistic Ethereum
@@ -223,8 +223,8 @@ development:
       evm_version: istanbul
       mnemonic: brownie
       fork: bsc-main
-  - name: Ganache-CLI (FTM-Mainnet Fork)
-    id: ftm-main-fork
+  - name: Ganache-CLI (Fantom-Mainnet Fork)
+    id: fantom-main-fork
     cmd: ganache-cli
     host: http://127.0.0.1
     timeout: 120
@@ -234,7 +234,7 @@ development:
       accounts: 10
       evm_version: istanbul
       mnemonic: brownie
-      fork: ftm-main
+      fork: fantom-main
   - name: Ganache-CLI (Polygon-Mainnet Fork)
     id: polygon-main-fork
     cmd: ganache-cli
