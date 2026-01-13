@@ -92,7 +92,7 @@ live:
         chainid: 100
         id: gnosis-main
         host: https://lb.drpc.org/gnosis/$DRPC_KEY
-        explorer: https://api.gnosisscan.io/api
+        explorer: https://api.etherscan.io/v2/api
       - name: Chiado
         chainid: 10200
         id: gnosis-test
@@ -150,7 +150,7 @@ live:
   - name: Plasma
     networks:
       - chainid: 9745
-        explorer: https://api.routescan.io/v2/network/mainnet/evm/9745/etherscan/api
+        explorer: https://api.etherscan.io/v2/api
         host: https://lb.drpc.org/plasma/$DRPC_KEY
         id: plasma-main
         name: Plasma mainnet
