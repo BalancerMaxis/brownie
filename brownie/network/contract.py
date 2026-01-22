@@ -96,6 +96,7 @@ _explorer_tokens = {
     "base": "BASESCAN_TOKEN",
     "hyperevmscan": "HYPEREVMSCAN_TOKEN",
     "blast": "BLASTSCAN_TOKEN",
+    "monadscan": "MONADSCAN_TOKEN",
 }
 
 # Mapping of chainids to legacy token names for backward compatibility
@@ -117,6 +118,7 @@ _chainid_to_legacy_token = {
     252: "FRAXSCAN_TOKEN",  # Fraxtal
     146: "SONICSCAN_TOKEN",  # Sonic
     999: "HYPEREVMSCAN_TOKEN",  # HyperEVM
+    143: "MONADSCAN_TOKEN",  # Monad
 }
 
 

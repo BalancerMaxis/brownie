@@ -154,6 +154,13 @@ live:
         host: https://lb.drpc.org/plasma/$DRPC_KEY
         id: plasma-main
         name: Plasma mainnet
+  - name: Monad
+    networks:
+      - chainid: 143
+        explorer: https://api.etherscan.io/v2/api
+        host: https://lb.drpc.org/monad-mainnet/$DRPC_KEY
+        id: monad-main
+        name: Monad mainnet
 
 development:
   - name: Anvil
