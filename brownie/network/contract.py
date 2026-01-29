@@ -97,6 +97,7 @@ _explorer_tokens = {
     "hyperevmscan": "HYPEREVMSCAN_TOKEN",
     "blast": "BLASTSCAN_TOKEN",
     "monadscan": "MONADSCAN_TOKEN",
+    "xlayerscan": "XLAYERSCAN_TOKEN",
 }
 
 # Mapping of chainids to legacy token names for backward compatibility
@@ -119,6 +120,7 @@ _chainid_to_legacy_token = {
     146: "SONICSCAN_TOKEN",  # Sonic
     999: "HYPEREVMSCAN_TOKEN",  # HyperEVM
     143: "MONADSCAN_TOKEN",  # Monad
+    196: "XLAYERSCAN_TOKEN",  # X-Layer
 }
 
 
